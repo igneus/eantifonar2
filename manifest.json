@@ -17,7 +17,8 @@
           "https://breviar.sk/cgi-bin/l.cgi?*p=*&j=la*"
       ],
       "all_frames": true,
-      "js": ["extension.js"]
+      "js": ["extension.js"],
+      "css": ["extension.css"]
     }
   ]
 

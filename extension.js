@@ -1,6 +1,8 @@
 'use strict';
 
 const apiEndpoint = 'http://localhost:3000/api/eantifonar/search'; // TODO replace with public API
+const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
+
 const debug = true;
 
 if (debug) {
@@ -70,12 +72,18 @@ const addChantsToElements = (elements, responseData) => {
         }
 
         let chantData = options[0];
+
         let img = document.createElement('img');
         img.setAttribute('src', chantData.image);
         img.setAttribute('alt', chantData.lyrics);
 
+        let link = document.createElement('a');
+        link.setAttribute('href', chantDetailUrl(chantData.id));
+        link.setAttribute('class', 'image-link');
+        link.appendChild(img);
+
         let parent = chantText.parentNode;
-        parent.insertBefore(img, chantText.nextSibling);
+        parent.insertBefore(link, chantText.nextSibling);
     });
 };
 
