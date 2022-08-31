@@ -1,0 +1,19 @@
+{
+
+  "manifest_version": 2,
+  "name": "E-Antifonář 2",
+  "version": "1.0",
+
+  "description": "Extends breviar.cz with chant scores from the 'In adiutorium' project",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://breviar.sk/cgi-bin/l.cgi?*p=*&j=cz*"
+      ],
+      "all_frames": true,
+      "js": ["extension.js"]
+    }
+  ]
+
+}
