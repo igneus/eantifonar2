@@ -6,6 +6,10 @@
 
   "description": "Extends breviar.cz with chant scores from the 'In adiutorium' project",
 
+  "permissions": [
+    "<all_urls>"
+  ],
+
   "content_scripts": [
     {
       "matches": [
