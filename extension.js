@@ -1,9 +1,11 @@
 'use strict';
 
 const apiEndpoint = 'http://localhost:3000/api/eantifonar/search'; // TODO replace with public API
+const debug = true;
 
-// TODO for debugging only
-document.body.prepend(document.createTextNode('eantifonar loaded ======='));
+if (debug) {
+    document.body.prepend(document.createTextNode('eantifonar loaded ======='));
+}
 
 // do XPath search, return result as Array
 const doXPath = (xpath) => {
@@ -33,7 +35,11 @@ const responsoryText = (node) => {
     return nodeOwnText(node.children[0]) + ' V. ' + nodeOwnText(node.children[2]);
 };
 
-const highlight = (element, colour) => element.style.border = '2px solid ' + colour;
+const highlight = (element, colour) => {
+    if (debug) {
+	element.style.border = '2px solid ' + colour;
+    }
+}
 
 const loadChants = (query, callback) => {
     let payload = {};
