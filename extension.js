@@ -80,6 +80,7 @@ const addChantsToElements = (elements, responseData) => {
         let options = responseData[i.toString()];
         if (null === options) {
             notFound++;
+            chantText.setAttribute('class', chantText.getAttribute('class') + ' music-not-found');
             return;
         }
 

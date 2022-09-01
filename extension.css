@@ -3,3 +3,5 @@
 
 a.image-link { border-style: none; }
 a.image-link:hover { background-color: transparent; }
+
+.music-not-found { border-left: 20px solid fuchsia !important; border-right: 20px solid fuchsia !important; }
