@@ -1,7 +1,7 @@
 #eantifonar-container { border: 1px dotted black; padding: 5px; font-size: small; }
 #eantifonar-container span { margin: 0 20px; }
 
-a.image-link { border-style: none; }
-a.image-link:hover { background-color: transparent; }
+a.eantifonar-image-link { border-style: none; }
+a.eantifonar-image-link:hover { background-color: transparent; }
 
-.music-not-found { border-left: 20px solid fuchsia !important; border-right: 20px solid fuchsia !important; }
+.eantifonar-music-not-found { border-left: 20px solid fuchsia !important; border-right: 20px solid fuchsia !important; }

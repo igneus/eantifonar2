@@ -80,7 +80,7 @@ const addChantsToElements = (elements, responseData) => {
         let options = responseData[i.toString()];
         if (null === options) {
             notFound++;
-            chantText.setAttribute('class', chantText.getAttribute('class') + ' music-not-found');
+            chantText.setAttribute('class', chantText.getAttribute('class') + ' eantifonar-music-not-found');
             return;
         }
 
@@ -92,7 +92,7 @@ const addChantsToElements = (elements, responseData) => {
 
         let link = document.createElement('a');
         link.setAttribute('href', chantDetailUrl(chantData.id));
-        link.setAttribute('class', 'image-link');
+        link.setAttribute('class', 'eantifonar-image-link');
         link.appendChild(img);
 
         let parent = chantText.parentNode;
