@@ -7,6 +7,8 @@ const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 
 const debug = true;
 
+const lang = new URLSearchParams(window.location.search).get('j');
+
 const statusBar = document.createElement('div');
 const statusBarId = 'eantifonar-statusbar';
 statusBar.setAttribute('id', statusBarId);
@@ -52,7 +54,7 @@ const nodeOwnText = (node) => {
 };
 
 const responsoryText = (node) => {
-    return nodeOwnText(node.children[0]) + ' V. ' + nodeOwnText(node.children[2]);
+    return nodeOwnText(node.children[0]) + ' | ' + nodeOwnText(node.children[2]);
 };
 
 const highlight = (element, colour) => {
@@ -128,7 +130,8 @@ const elementGroups = [
     {
         desc: 'short responsory',
         xpath: "//div[@class='respons' and count(./p) > 2]",
-        highlight: 'blue'
+        highlight: 'blue',
+        textExtractor: responsoryText
     },
     {
         desc: 'Gospel antiphon',
@@ -153,7 +156,8 @@ const elementGroups = [
         doXPath(obj.xpath).forEach((element) => {
             highlight(element, obj.highlight);
             elements.push(element);
-            query.push({lyrics: nodeOwnText(element)});
+            let lyrics = (obj.textExtractor ? obj.textExtractor : nodeOwnText)(element);
+            query.push({lyrics: lyrics, lang: lang});
         });
     });
 
