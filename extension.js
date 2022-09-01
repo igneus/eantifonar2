@@ -102,42 +102,40 @@ const addChantsToElements = (elements, responseData) => {
     containerPrint('scores loaded' + (notFound > 0 ? ', ' + notFound + ' chant/s missing' : ''));
 };
 
+const elementGroups = [
+    {
+        desc: 'invitatory; lone antiphon of the Daytime Prayer; repetition of an antiphon after a psalm',
+        xpath: "//p[./span[@class='red' and contains(text(), 'Ant.')]]",
+        highlight: 'orange'
+    },
+    {
+        desc: 'psalm antiphons',
+        xpath: "//p[./span[@class='red' and contains(text(), 'ant.')]]",
+        highlight: 'red'
+    },
+    {
+        desc: 'short responsory',
+        xpath: "//div[@class='respons' and count(./p) > 2]",
+        highlight: 'blue'
+    },
+    {
+        desc: 'Gospel antiphon',
+        xpath: "//p[./span[@class='red' and contains(text(), 'Antifona k')]]",
+        highlight: 'yellow'
+    }
+];
 let elements = [];
 let query = [];
 
 containerPrint('E-Antifonář 2');
 
-// invitatory; repetition of an antiphon after a psalm
-doXPath("//p[./span[@class='red' and contains(text(), 'Ant.')]]")
-    .forEach((element) => {
-        highlight(element, 'orange');
+elementGroups.forEach((obj) => {
+    doXPath(obj.xpath).forEach((element) => {
+        highlight(element, obj.highlight);
         elements.push(element);
         query.push({lyrics: nodeOwnText(element)});
     });
-
-// psalm antiphons
-doXPath("//p[./span[@class='red' and contains(text(), 'ant.')]]")
-    .forEach((element) => {
-        highlight(element, 'red');
-        elements.push(element);
-        query.push({lyrics: nodeOwnText(element)});
-    });
-
-// short responsory
-doXPath("//div[@class='respons' and count(./p) > 2]")
-    .forEach((element) => {
-        highlight(element, 'blue');
-        elements.push(element);
-        query.push({lyrics: responsoryText(element)});
-    });
-
-// Gospel antiphon
-doXPath("//p[./span[@class='red' and contains(text(), 'Antifona k')]]")
-    .forEach((element) => {
-        highlight(element, 'yellow');
-        elements.push(element);
-        query.push({lyrics: nodeOwnText(element)});
-    });
+});
 
 containerPrint(query.length.toString() + ' chants found');
 
