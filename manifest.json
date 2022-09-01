@@ -19,6 +19,13 @@
       "all_frames": true,
       "js": ["extension.js"],
       "css": ["extension.css"]
+    },
+    {
+      "matches": [
+        "https://divinumofficium.com/cgi-bin/horas/officium.pl"
+      ],
+      "js": ["divinumofficium.js"],
+      "css": ["extension.css"]
     }
   ]
 
