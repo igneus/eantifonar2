@@ -1,5 +1,7 @@
 'use strict';
 
+const extensionHomepageUrl = 'https://github.com/igneus/eantifonar2';
+
 const apiEndpoint = 'http://localhost:3000/api/eantifonar/search'; // TODO replace with public API
 const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 
@@ -13,6 +15,16 @@ const containerPrint = (str) => {
     let span = document.createElement('span');
     span.appendChild(document.createTextNode(str));
     container.appendChild(span);
+};
+
+const extensionNameLink = () => {
+    let span = document.createElement('span');
+    let link = document.createElement('a');
+    link.setAttribute('href', extensionHomepageUrl);
+    link.appendChild(document.createTextNode('E-Antifonář 2'));
+    span.appendChild(link);
+
+    return span;
 };
 
 // do XPath search, return result as Array
@@ -127,7 +139,7 @@ const elementGroups = [
 let elements = [];
 let query = [];
 
-containerPrint('E-Antifonář 2');
+container.appendChild(extensionNameLink());
 
 elementGroups.forEach((obj) => {
     doXPath(obj.xpath).forEach((element) => {
