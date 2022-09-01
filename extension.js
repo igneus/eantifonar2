@@ -7,14 +7,14 @@ const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 
 const debug = true;
 
-const container = document.createElement('div');
-const containerId = 'eantifonar-container';
-container.setAttribute('id', containerId);
+const statusBar = document.createElement('div');
+const statusBarId = 'eantifonar-statusbar';
+statusBar.setAttribute('id', statusBarId);
 
-const containerPrint = (str) => {
+const statusBarPrint = (str) => {
     let span = document.createElement('span');
     span.appendChild(document.createTextNode(str));
-    container.appendChild(span);
+    statusBar.appendChild(span);
 };
 
 const extensionNameLink = () => {
@@ -72,7 +72,7 @@ const loadChants = (query, callback) => {
     })
         .then((response) => {
             if (response.status != 200) {
-                containerPrint('API request unsuccessful (' + response.status.toString() + ')');
+                statusBarPrint('API request unsuccessful (' + response.status.toString() + ')');
                 console.log(response);
                 return {};
             }
@@ -81,7 +81,7 @@ const loadChants = (query, callback) => {
         })
         .then(callback)
         .catch((error) => {
-            containerPrint('could not make API request: ' + error);
+            statusBarPrint('could not make API request: ' + error);
             console.error(error);
         });
 };
@@ -111,7 +111,7 @@ const addChantsToElements = (elements, responseData) => {
         parent.insertBefore(link, chantText.nextSibling);
     });
 
-    containerPrint('scores loaded' + (notFound > 0 ? ', ' + notFound + ' chant/s missing' : ''));
+    statusBarPrint('scores loaded' + (notFound > 0 ? ', ' + notFound + ' chant/s missing' : ''));
 };
 
 const elementGroups = [
@@ -141,13 +141,13 @@ const elementGroups = [
     let elements = [];
     let query = [];
 
-    if (null !== document.getElementById(containerId)) {
+    if (null !== document.getElementById(statusBarId)) {
         console.log('already initialized, looks like extension was reloaded');
         return;
     }
 
-    document.body.prepend(container);
-    container.appendChild(extensionNameLink());
+    document.body.prepend(statusBar);
+    statusBar.appendChild(extensionNameLink());
 
     elementGroups.forEach((obj) => {
         doXPath(obj.xpath).forEach((element) => {
@@ -157,7 +157,7 @@ const elementGroups = [
         });
     });
 
-    containerPrint(query.length.toString() + ' chants found');
+    statusBarPrint(query.length.toString() + ' chants found');
 
     loadChants(query, (responseData) => addChantsToElements(elements, responseData));
 })();
