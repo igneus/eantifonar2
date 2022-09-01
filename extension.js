@@ -8,8 +8,8 @@ const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 const debug = true;
 
 const container = document.createElement('div');
-container.setAttribute('id', 'eantifonar-container');
-document.body.prepend(container);
+const containerId = 'eantifonar-container';
+container.setAttribute('id', containerId);
 
 const containerPrint = (str) => {
     let span = document.createElement('span');
@@ -136,19 +136,28 @@ const elementGroups = [
         highlight: 'yellow'
     }
 ];
-let elements = [];
-let query = [];
 
-container.appendChild(extensionNameLink());
+(() => {
+    let elements = [];
+    let query = [];
 
-elementGroups.forEach((obj) => {
-    doXPath(obj.xpath).forEach((element) => {
-        highlight(element, obj.highlight);
-        elements.push(element);
-        query.push({lyrics: nodeOwnText(element)});
+    if (null !== document.getElementById(containerId)) {
+        console.log('already initialized, looks like extension was reloaded');
+        return;
+    }
+
+    document.body.prepend(container);
+    container.appendChild(extensionNameLink());
+
+    elementGroups.forEach((obj) => {
+        doXPath(obj.xpath).forEach((element) => {
+            highlight(element, obj.highlight);
+            elements.push(element);
+            query.push({lyrics: nodeOwnText(element)});
+        });
     });
-});
 
-containerPrint(query.length.toString() + ' chants found');
+    containerPrint(query.length.toString() + ' chants found');
 
-loadChants(query, (responseData) => addChantsToElements(elements, responseData));
+    loadChants(query, (responseData) => addChantsToElements(elements, responseData));
+})();
