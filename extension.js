@@ -5,9 +5,15 @@ const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 
 const debug = true;
 
-if (debug) {
-    document.body.prepend(document.createTextNode('eantifonar loaded ======='));
-}
+const container = document.createElement('div');
+container.setAttribute('id', 'eantifonar-container');
+document.body.prepend(container);
+
+const containerPrint = (str) => {
+    let span = document.createElement('span');
+    span.appendChild(document.createTextNode(str));
+    container.appendChild(span);
+};
 
 // do XPath search, return result as Array
 const doXPath = (xpath) => {
@@ -39,7 +45,7 @@ const responsoryText = (node) => {
 
 const highlight = (element, colour) => {
     if (debug) {
-	element.style.border = '2px solid ' + colour;
+        element.style.border = '2px solid ' + colour;
     }
 }
 
@@ -54,6 +60,7 @@ const loadChants = (query, callback) => {
     })
         .then((response) => {
             if (response.status != 200) {
+                containerPrint('API request unsuccessful (' + response.status.toString() + ')');
                 console.log(response);
                 return {};
             }
@@ -61,13 +68,18 @@ const loadChants = (query, callback) => {
             return response.json();
         })
         .then(callback)
-        .catch(console.error);
+        .catch((error) => {
+            containerPrint('could not make API request: ' + error);
+            console.error(error);
+        });
 };
 
 const addChantsToElements = (elements, responseData) => {
+    let notFound = 0;
     elements.forEach((chantText, i) => {
         let options = responseData[i.toString()];
         if (null === options) {
+            notFound++;
             return;
         }
 
@@ -85,10 +97,14 @@ const addChantsToElements = (elements, responseData) => {
         let parent = chantText.parentNode;
         parent.insertBefore(link, chantText.nextSibling);
     });
+
+    containerPrint('scores loaded' + (notFound > 0 ? ', ' + notFound + ' chant/s missing' : ''));
 };
 
 let elements = [];
 let query = [];
+
+containerPrint('E-Antifonář 2');
 
 // invitatory; repetition of an antiphon after a psalm
 doXPath("//p[./span[@class='red' and contains(text(), 'Ant.')]]")
@@ -121,5 +137,7 @@ doXPath("//p[./span[@class='red' and contains(text(), 'Antifona k')]]")
         elements.push(element);
         query.push({lyrics: nodeOwnText(element)});
     });
+
+containerPrint(query.length.toString() + ' chants found');
 
 loadChants(query, (responseData) => addChantsToElements(elements, responseData));

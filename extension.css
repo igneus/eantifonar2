@@ -1,2 +1,5 @@
+#eantifonar-container { border: 1px dotted black; padding: 5px; font-size: small; }
+#eantifonar-container span { margin: 0 20px; }
+
 a.image-link { border-style: none; }
 a.image-link:hover { background-color: transparent; }
