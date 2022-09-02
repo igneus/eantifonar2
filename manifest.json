@@ -14,6 +14,7 @@
     {
       "matches": [
           "https://breviar.sk/cgi-bin/l.cgi?*p=*&j=cz*",
+          "https://breviar.sk/cgi-bin/l.cgi?*p=*&j=c2*",
           "https://breviar.sk/cgi-bin/l.cgi?*p=*&j=la*"
       ],
       "all_frames": true,

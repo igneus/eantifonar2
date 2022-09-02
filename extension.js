@@ -9,7 +9,7 @@ const debug = true;
 
 const lang = (() => {
     const j = new URLSearchParams(window.location.search).get('j');
-    return j === 'cz' ? 'cs' : j;
+    return (j === 'cz' || j === 'c2') ? 'cs' : j;
 })();
 
 const statusBar = document.createElement('div');
