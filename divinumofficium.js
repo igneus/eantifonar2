@@ -16,11 +16,10 @@ class DivinumOfficiumEAntiphonal extends EAntiphonal {
     }
 
     setUpChantTextAnchor(node, anchorId) {
-        // TODO: make this work
-        // let span = document.createElement('span');
-        // span.setAttribute('id', anchorId);
-        // let parent = node.parentNode;
-        // parent.insertBefore(node, span);
+        let span = document.createElement('span');
+        span.setAttribute('id', anchorId);
+        let parent = node.parentNode;
+        parent.insertBefore(span, node);
     }
 }
 
