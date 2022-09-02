@@ -93,11 +93,24 @@ const loadChants = (query, callback) => {
 
 const addChantsToElements = (elements, responseData) => {
     let notFound = 0;
+    let notFoundLinks = document.createElement('span');
+
     elements.forEach((chantText, i) => {
         let options = responseData[i.toString()];
         if (null === options) {
             notFound++;
             chantText.setAttribute('class', chantText.getAttribute('class') + ' eantifonar-music-not-found');
+
+	    // add link to the chant to the status bar
+	    let notFoundId = 'not-found-' + i;
+	    chantText.setAttribute('id', notFoundId);
+
+	    let link = document.createElement('a');
+	    link.setAttribute('href', '#' + notFoundId);
+	    link.appendChild(document.createTextNode('[' + i + ']'));
+	    notFoundLinks.appendChild(document.createTextNode(' '));
+	    notFoundLinks.appendChild(link);
+
             return;
         }
 
@@ -117,6 +130,10 @@ const addChantsToElements = (elements, responseData) => {
     });
 
     statusBarPrint('scores loaded' + (notFound > 0 ? ', ' + notFound + ' chant/s missing' : ''));
+
+    if (debug) {
+	statusBar.appendChild(notFoundLinks);
+    }
 };
 
 const elementGroups = [
