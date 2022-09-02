@@ -4,7 +4,7 @@
   "name": "E-Antifonář 2",
   "version": "1.0",
 
-  "description": "Extends breviar.cz with chant scores from the 'In adiutorium' project",
+  "description": "Extends (Czech and Latin version of) breviar.cz and divinumofficium.com with chant scores",
 
   "permissions": [
     "<all_urls>"
