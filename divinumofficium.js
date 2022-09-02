@@ -2,9 +2,6 @@
 
 const extensionHomepageUrl = 'https://github.com/igneus/eantifonar2';
 
-const apiEndpoint = 'http://localhost:3000/api/eantifonar/search'; // TODO replace with public API
-const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
-
 const debug = true;
 
 const lang = 'la';
@@ -27,18 +24,6 @@ const extensionNameLink = () => {
     span.appendChild(link);
 
     return span;
-};
-
-// do XPath search, return result as Array
-const doXPath = (xpath) => {
-    const antiphons = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
-    let a = null;
-    let r = [];
-    while (a = antiphons.iterateNext()) {
-        r.push(a);
-    }
-
-    return r;
 };
 
 // returns text contained directly in the node, ignoring text content of child elements
