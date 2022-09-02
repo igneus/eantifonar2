@@ -7,7 +7,10 @@ const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 
 const debug = true;
 
-const lang = new URLSearchParams(window.location.search).get('j');
+const lang = (() => {
+    const j = new URLSearchParams(window.location.search).get('j');
+    return j === 'cz' ? 'cs' : j;
+})();
 
 const statusBar = document.createElement('div');
 const statusBarId = 'eantifonar-statusbar';
