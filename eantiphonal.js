@@ -55,7 +55,7 @@ class EAntiphonal {
             doXPath(obj.xpath).forEach((element) => {
                 this.decorateChantText(element, obj);
                 elements.push(element);
-                let lyrics = (obj.textExtractor ? obj.textExtractor : nodeOwnText)(element);
+                let lyrics = (obj.textExtractor ? obj.textExtractor : this.extractChantText)(element);
                 query.push({lyrics: lyrics, lang: this.lang});
             });
         });
@@ -75,6 +75,10 @@ class EAntiphonal {
 
     // allows decorating a chant text for which notation is not available (after notation is loaded)
     decorateChantTextNotationMissing(node) {
+    }
+
+    setUpChantTextAnchor(node, anchorId) {
+        node.setAttribute('id', anchorId);
     }
 
     statusBarExists() {
@@ -128,7 +132,7 @@ class EAntiphonal {
 
                 // add link to the chant to the status bar
                 let notFoundId = 'not-found-' + i;
-                chantText.setAttribute('id', notFoundId); // TODO: this will not work for DivinumOfficium
+                this.setUpChantTextAnchor(chantText, notFoundId);
 
                 let link = document.createElement('a');
                 link.setAttribute('href', '#' + notFoundId);
