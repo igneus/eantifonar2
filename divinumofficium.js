@@ -18,6 +18,7 @@ class DivinumOfficiumEAntiphonal extends EAntiphonal {
     setUpChantTextAnchor(node, anchorId) {
         let span = document.createElement('span');
         span.setAttribute('id', anchorId);
+        span.setAttribute('class', 'eantifonar-music-not-found');
         let parent = node.parentNode;
         parent.insertBefore(span, node);
     }
