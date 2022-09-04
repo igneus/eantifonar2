@@ -168,8 +168,8 @@ class EAntiphonal {
 }
 
 // do XPath search, return result as Array
-const doXPath = (xpath) => {
-    const antiphons = document.evaluate(xpath, document, null, XPathResult.ANY_TYPE, null);
+const doXPath = (xpathExpression, contextNode = document) => {
+    const antiphons = document.evaluate(xpathExpression, contextNode, null, XPathResult.ANY_TYPE, null);
     let a = null;
     let r = [];
     while (a = antiphons.iterateNext()) {

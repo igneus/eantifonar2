@@ -18,7 +18,8 @@ const nodeOwnText = (node) => {
 };
 
 const responsoryText = (node) => {
-    return nodeOwnText(node.children[0]) + ' | ' + nodeOwnText(node.children[2]);
+    const parts = doXPath("./p[@class='respV']", node);
+    return nodeOwnText(parts[0]) + ' | ' + nodeOwnText(parts[1]);
 };
 
 const elementGroups = [
@@ -34,7 +35,7 @@ const elementGroups = [
     },
     {
         desc: 'short responsory',
-        xpath: "//div[@class='respons' and count(./p) > 2]",
+        xpath: "//div[@class='respons' and count(./p[@class='respV']) > 2]",
         highlight: 'blue',
         textExtractor: responsoryText
     },
