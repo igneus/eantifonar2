@@ -27,6 +27,13 @@
       ],
       "js": ["eantiphonal.js", "divinumofficium.js"],
       "css": ["extension.css"]
+    },
+    {
+      "matches": [
+        "*://m.liturgie.cz/*"
+      ],
+      "js": ["eantiphonal.js", "mliturgiecz.js"],
+      "css": ["extension.css"]
     }
   ]
 
