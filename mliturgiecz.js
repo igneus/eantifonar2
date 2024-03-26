@@ -10,12 +10,13 @@ const elementGroups = [
     },
     {
         desc: 'responsorial psalm',
-        xpath: "//h4[contains(text(), 'Mezizpěv')]/following-sibling::p[1]",
+	// string(element) returns text content of the element and all its children
+        xpath: "//h4[contains(string(.), 'Mezizpěv')]/following-sibling::p[1]",
         highlight: 'red'
     },
     {
         desc: 'alleluia / verse before the Gospel',
-        xpath: "//h4[contains(text(), 'Zpěv před evangeliem')]/following-sibling::p[1]",
+        xpath: "//h4[contains(string(.), 'Zpěv před evangeliem')]/following-sibling::p[1]",
         highlight: 'blue'
     },
     {
