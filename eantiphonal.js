@@ -5,7 +5,6 @@ const homepageUrl = 'https://github.com/igneus/eantifonar2';
 
 // TODO replace local URLs with public ones
 const apiEndpoint = 'http://localhost:3000/api/eantifonar/search';
-const chantDetailUrl = (id) => 'http://localhost:3000/chants/' + id.toString();
 
 class StatusBar {
     constructor(elementId) {
@@ -151,7 +150,7 @@ class EAntiphonal {
             img.setAttribute('alt', chantData.lyrics);
 
             let link = document.createElement('a');
-            link.setAttribute('href', chantDetailUrl(chantData.id));
+            link.setAttribute('href', chantData.browse_url);
             link.setAttribute('class', 'eantifonar-image-link');
             link.appendChild(img);
 
