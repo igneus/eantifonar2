@@ -3,7 +3,7 @@
 Firefox extension enhancing
 
 - http://breviar.cz with chant scores from the [In adiutorium][ia] project
-- https://divinumofficium.com/ and https://breviar.sk/la/ with chant scores from publicly available chant corpora
+- https://divinumofficium.com/ and https://breviar.sk/la/ with chant scores from publicly available corpora of Gregorian chant
 
 Developed as a (both legally and technically) less problematic replacement
 of the original [E-Antifonář][ean] web app.
