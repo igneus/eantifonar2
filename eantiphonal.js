@@ -1,7 +1,8 @@
 'use strict';
 
-const extensionName = 'E-Antifonář 2';
-const homepageUrl = 'https://github.com/igneus/eantifonar2';
+const manifest = browser.runtime.getManifest();
+const extensionName = manifest.name;
+const homepageUrl = manifest.homepage_url;
 
 // TODO replace local URLs with public ones
 const apiEndpoint = 'http://localhost:3000/api/eantifonar/search';

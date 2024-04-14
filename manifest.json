@@ -3,6 +3,7 @@
   "manifest_version": 2,
   "name": "E-Antifonář 2",
   "version": "1.0",
+  "homepage_url": "https://github.com/igneus/eantifonar2",
 
   "description": "Extends (Czech and Latin version of) breviar.cz and divinumofficium.com with chant scores",
 
